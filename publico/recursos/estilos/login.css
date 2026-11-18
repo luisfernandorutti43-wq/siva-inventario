@@ -1,0 +1,393 @@
+/* Estilos de la pantalla de acceso y su fondo multimedia. */
+
+/* Colores del tema de login; cambia las variables doradas para recolorear botones y enlaces. */
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", sans-serif;
+  background: #202522;
+  color: #f3f0e7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  /* Edita estas variables para cambiar el dorado y su tono al pasar el puntero. */
+  --login-accent: #d9c889;
+  --login-accent-hover: #f3e5ad;
+}
+
+/* Capa del puntero y medidas base de la pagina de acceso. */
+* {
+  box-sizing: border-box;
+}
+
+.pointer-effect-canvas {
+  position: fixed;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  margin: 0;
+  padding: 44px 24px 64px;
+  background: #202522;
+}
+
+/* Fondo decorativo del login: el video puede faltar sin afectar la autenticacion. */
+.login-background {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  background: #202522;
+  pointer-events: none;
+}
+
+.login-background video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.72) saturate(0.9);
+}
+
+.login-background::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(20 25 22 / 34%), rgb(20 25 22 / 18%) 52%, rgb(20 25 22 / 38%)), linear-gradient(0deg, rgb(20 25 22 / 30%), transparent 70%);
+  content: "";
+}
+
+/* Panel introductorio, textos y distribucion de la pantalla de login. */
+.page-shell {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.hero-panel {
+  padding: 34px 40px;
+  border: 1px solid rgb(243 240 231 / 12%);
+  border-radius: 8px;
+  background: #2a2e2b;
+  box-shadow: 0 24px 70px rgb(0 0 0 / 28%);
+  text-align: center;
+}
+
+.hero-kicker, .section-kicker {
+  margin: 0 0 12px;
+  color: var(--login-accent);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  max-width: 760px;
+  margin: 0 auto 12px;
+  color: #f3f0e7;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.hero-copy {
+  max-width: 700px;
+  margin: 0 auto 18px;
+  color: #afb5ae;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.request-access {
+  color: var(--login-accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.request-access:hover {
+  color: var(--login-accent-hover);
+  text-decoration: underline;
+}
+
+.login-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.95fr);
+  align-items: center;
+  gap: clamp(32px, 7vw, 88px);
+  padding: 64px 0;
+  border-bottom: 1px solid rgb(243 240 231 / 12%);
+}
+
+.login-intro {
+  max-width: 480px;
+}
+
+.section-kicker {
+  margin-bottom: 10px;
+}
+
+.title {
+  margin: 0 0 10px;
+  color: #f3f0e7;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.subtitle {
+  margin: 0;
+  color: #afb5ae;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.login-panel {
+  width: 100%;
+  padding: 30px;
+  border: 1px solid rgb(243 240 231 / 12%);
+  border-radius: 8px;
+  background: #2a2e2b;
+  box-shadow: 0 18px 48px rgb(0 0 0 / 22%);
+}
+
+/* Campos, enlaces y botones de acceso; los tonos principales usan las variables de arriba. */
+.field {
+  margin-top: 16px;
+}
+
+.field label {
+  display: block;
+  margin: 0 0 8px;
+  color: #d9ddd6;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.input-wrap {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 13px;
+  border: 1px solid #484e49;
+  border-radius: 4px;
+  background: #222623;
+}
+
+.input-wrap:focus-within {
+  border-color: var(--login-accent);
+  box-shadow: 0 0 0 3px rgb(217 200 137 / 13%);
+}
+
+.input-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  fill: var(--login-accent);
+}
+
+.input-field {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #f3f0e7;
+  font: inherit;
+  font-size: 14px;
+}
+
+.password-visibility-toggle {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #c5c9c1;
+  cursor: pointer;
+}
+
+.password-visibility-toggle:hover, .password-visibility-toggle:focus-visible {
+  color: var(--login-accent-hover);
+}
+
+.password-visibility-toggle:focus-visible {
+  outline: 2px solid var(--login-accent);
+  outline-offset: 2px;
+}
+
+.password-eye-icon {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.password-eye-icon[hidden] {
+  display: none;
+}
+
+.input-field::placeholder {
+  color: #858d85;
+}
+
+.form-meta {
+  display: flex;
+  justify-content: flex-end;
+  margin: 12px 0 22px;
+}
+
+.btn-link {
+  color: var(--login-accent);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: var(--login-accent-hover);
+  text-decoration: underline;
+}
+
+.btn {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--login-accent);
+  color: #252922;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: var(--login-accent-hover);
+}
+
+.recovery-submit {
+  margin-top: 22px;
+}
+
+.back-link {
+  display: block;
+  margin: 18px auto 0;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--login-accent);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+
+.back-link:hover {
+  color: var(--login-accent-hover);
+  text-decoration: underline;
+}
+
+.status {
+  min-height: 20px;
+  margin: 14px 0 0;
+  color: var(--login-accent);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.status:empty {
+  margin: 0;
+  min-height: 0;
+}
+
+/* Ayuda desplegable, mensajes de sistema y estados del formulario. */
+.access-help {
+  padding: 40px 0 0;
+}
+
+.help-intro {
+  max-width: 620px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.help-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+}
+
+.help-list details {
+  padding: 16px 0;
+  border-top: 1px solid rgb(243 240 231 / 12%);
+}
+
+.help-list summary {
+  color: #d9ddd6;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.help-list details p {
+  margin: 9px 0 0;
+  color: #afb5ae;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.system-message {
+  padding: 16px;
+  border: 1px solid rgb(217 200 137 / 28%);
+  border-radius: 4px;
+  color: #d9ddd6;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* En pantallas pequenas apila introduccion, login y ayuda. */
+@media (max-width: 720px) {
+  body {
+    padding: 24px 16px 40px;
+  }
+  .hero-panel {
+    padding: 28px 22px;
+  }
+  .hero-title {
+    font-size: 27px;
+  }
+  .login-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 42px 0;
+  }
+  .login-intro {
+    max-width: 100%;
+  }
+  .login-panel {
+    max-width: 520px;
+    justify-self: center;
+    padding: 26px 22px;
+  }
+  .help-list {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
