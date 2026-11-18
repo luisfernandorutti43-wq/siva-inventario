@@ -1,0 +1,26 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^\.git(?:/|$) - [F,NC,L]
+RewriteRule ^(aplicacion|configuracion|base_datos|vendor|analisis|pruebas|documentacion_sustentacion)(/|$) - [F,NC,L]
+RewriteRule ^publico/enrutador\.php$ - [F,NC,L]
+RewriteRule ^vistas/(paginas|Services)(/|$) - [F,NC,L]
+RewriteRule ^uploads/products/(.*)$ publico/subidas/productos/$1 [L]
+RewriteRule ^vistas/estilos/(.*)$ publico/recursos/estilos/$1 [L]
+RewriteRule ^vistas/scripts/(.*)$ publico/recursos/scripts/$1 [L]
+RewriteRule ^vistas/imagenes/(.*)$ publico/recursos/imagenes/$1 [L]
+</IfModule>
+
+<IfModule mod_authz_core.c>
+<FilesMatch "(?i)\.(sql|xlsx|docx|ipynb|md|log|zip|json|lock|env)$">
+Require all denied
+</FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+<FilesMatch "\.(sql|xlsx|docx|ipynb|md|log|zip|json|lock|env)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+</IfModule>

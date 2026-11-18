@@ -1,0 +1,13 @@
+{
+  "name": "black4x4/siva-inventario",
+  "description": "Aplicación de inventario y pronóstico de ventas BLACK4X4 LLANTAS.",
+  "license": "proprietary",
+  "require": {
+    "php": "^8.1",
+    "chillerlan/php-qrcode": "^4.3"
+  },
+  "config": {
+    "platform-check": true,
+    "sort-packages": true
+  }
+}

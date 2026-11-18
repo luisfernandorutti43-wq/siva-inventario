@@ -1,0 +1,49 @@
+# Entorno y archivos temporales de Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Configuración local con credenciales
+.env
+.env.*
+!.env.example
+configuracion/hosting.local.php
+
+# Dependencias instalables desde los manifiestos del proyecto
+/vendor/
+
+# Exportaciones y datos operativos; usar únicamente datos de demostración al publicar
+*.xlsx
+*.xls
+*.csv
+*.ipynb
+/base_datos/siva_inventario.sql
+!/demostracion/ventas_demo_*.xlsx
+
+# Documentos de trabajo y presentaciones
+*.docx
+*.pptx
+/documentacion_sustentacion/
+
+# Artefactos de modelos archivados y herramientas para presentaciones
+/analisis/archivado/
+/analisis/generar_presentacion_siva.py
+
+# Logos y medios de terceros sin licencia de redistribución
+/publico/recursos/imagenes/CARPETAS_MARCAS_LLANTAS/
+/publico/recursos/imagenes/*.mp4
+/publico/recursos/imagenes/impresora.png
+/publico/recursos/imagenes/notification.png
+
+# Archivos cargados por usuarios durante la ejecución local
+/publico/subidas/productos/*
+!/publico/subidas/productos/.gitkeep
+
+# Archivos temporales y registros
+*.log
+*.tmp
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
